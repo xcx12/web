@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        font-size: 16px;
+    }
+    #app{
+        /* 375px */
+        width: 3.75rem;
+        
+
+    }
+    .main{
+        width: 3.75rem;
+    }
+    .header{
+        width: 3.75rem;
+        height: 0.5rem;
+        display: flex;
+        background-color: darkseagreen;
+        align-items: center;
+    }
+    .header .logo{
+        width: 1.2rem;
+        height: 0.5rem;
+        font-size: 0.25rem;
+        line-height: 0.5rem;
+    }
+    .header input{
+        width: 2.2rem;
+        height: 0.3rem;
+        border: none;
+        outline: none;    
+        margin: 0 0.2rem;
+        border-radius: 0.05rem;
+        padding: 0 0.1rem;
+
+    }
+    .todo h3{
+        height: 0.6rem;
+        line-height: 0.6rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 0.15rem;
+
+
+    }
+   
+    /* .todo{
+        
+    } */
+    .todo .list{
+        padding: 0 0.15rem;
+    }
+    .todo .todoitem{
+        display: flex;
+        height: 0.38rem;
+        line-height: 0.38rem;
+        align-items: center;
+        background-color: khaki;
+        border-radius: 0.05rem;
+        overflow: hidden;
+        margin-bottom: 0.1rem;
+        padding: 0 0.08rem;
+    }
+  
+    .todoitem .content{
+        width: 2.65rem;
+        color: #333;
+        padding: 0 0.14rem;
+    }
+    .todoitem .del{
+        background-color: lightsalmon;
+        width: 0.4rem;
+        height: 0.2rem;
+        font-size: 0.12rem;
+        line-height: 0.2rem;
+        text-align: center;
+        border-radius: 0.05rem;
+        margin: 0 0.1rem;
+        color: #fff;
+    }
+    .done.todo .todoitem{
+        opacity: 0.3;
+        -webkit-filter: grayscale(1);
+
+    }
+    /* .pc{
+        font-size: 200px!important;
+    } */
+    
+</style>
+<body>
+    <div id="app">
+        <div class="main">
+            <!-- 头部开始 -->
+            <div class="header">
+                <div class="logo">LcTodo</div>
+                <!-- 输入框开始 -->
+                <input type="text" placeholder="请输入..." id="input">
+                <!-- 输入框结束 -->
+
+            </div>
+            <!-- 头部结束 -->
+            <!-- 第二部分开始 -->
+            <div class="doing todo">
+                <h3><span class="title">正在进行</span><span class="num">0</span></h3>
+                <div class="list">
+                    <div class="todoitem">
+                        <input type="checkbox" name="" id="">
+                        <div class="content">eat</div>
+                        <div class="del">删除</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 第二部分结束 -->
+            <!-- 第三部分开始 -->
+            <div class="done todo">
+                <h3><span class="title">正在进行</span><span class="num">0</span></h3>
+                <div class="list">
+                    <div class="todoitem">
+                        <input type="checkbox" checked="checked">
+                        <div class="content">eat</div>
+                        <div class="del">删除</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 第三部分结束 -->
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <script>
+       (function(){
+	function lcXys(){
+		var html = document.querySelector('html')
+		var userAgent = navigator.userAgent
+		//userAgent.indexOf("iPhone"),通过此方法可以获取iphone在字符中的索引值
+		html.className = "";
+		if(userAgent.indexOf("iPhone")!=-1){
+			//console.log(iphone)
+			html.classList.add("iphone")
+		}else if(userAgent.indexOf("Android")!=-1){
+			//console.log(iphone)
+			html.classList.add("android")
+		}else if(userAgent.indexOf("iPad")!=-1){
+			//console.log(iphone)
+			html.classList.add("ipad")
+		}else{
+			html.classList.add("pc")
+		}
+		
+		//作业:window.innerWidth,可以获取窗口的宽度,所以可以根据窗口的宽度,来设定html的样式(lt640,lt960,lt1200,gt640,gt960,gt1200)
+		if(window.innerWidth<640){
+			html.classList.add('lt640');
+			html.classList.add("lt960")
+			html.classList.add("lt1200")
+		}else if(window.innerWidth<960){
+			html.classList.add("lt960")
+			html.classList.add("lt1200")
+			html.classList.add("gt640")
+		}else if(window.innerWidth<1200){
+			html.classList.add("gt960")
+			html.classList.add("lt1200")
+			html.classList.add("gt640")
+		}else{
+			html.classList.add("gt960")
+			html.classList.add("gt1200")
+			html.classList.add("gt640")
+		}
+		
+		//rem布局
+		var screenWidth = window.innerWidth;
+		var danwei = screenWidth/3.75;//屏幕的宽度/设计稿占满全屏的宽度为多少rem
+		var html = document.querySelector("html")
+		html.style.fontSize = danwei + 'px';
+		
+	}
+	lcXys()
+	
+	window.onresize = function(){
+		lcXys()
+	}
+})()
+			
+    </script>
+</body>
+</html>
